@@ -1,0 +1,20 @@
+{% extends 'template.html' %}
+
+    {% block title %} 第三测试博客 {% endblock %}
+
+    {% block content %}
+        辜欣的第三个博客<br>
+        {% for post in posts %}
+            <a href="{{url_for('post', post_id=post['id'])}}">
+                <span>{{ post['title'] }}</span>
+                <span>{{ post['content'] }}</span>
+            </a>
+
+            <a href="{{ url_for('edit', post_id=post['id'])}}">
+                <span class="badge badge-warning"
+                      onclick="return confirm('do you sure to edit this post?')">编辑</span>
+            </a>
+            <br>
+            <span class="badge badge-primary">{{ post['created']}}</span><hr>
+        {% endfor %}
+    {% endblock %}
